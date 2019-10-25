@@ -1,0 +1,153 @@
+body{
+    overflow: hidden;
+    margin: 0;
+    font-family: Arial;
+    background-color: #101E5B
+}
+
+p{
+    margin: 0;
+}
+
+#topbar{
+    position: relative;
+    height: 8vh;
+    width: 100vw;
+    background-color:   #101E5B;
+}
+
+#school-name{
+    position: absolute;
+    left: calc(5vw + 12vh);
+    font-size: 3vw;
+    font-weight: 700;
+    line-height: 10vh;
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: white;
+}
+
+#topbar img{
+    margin-top: .72vh;
+    position: absolute;
+    width: 10vh;
+    height: 8vh;
+    top: .5vh;
+    left: 1vw;
+}
+
+#home:hover{
+    background-color: white;
+    color: #101E5B;
+}
+
+.navbar{
+    position: absolute;
+    height: 5.4vh;
+    bottom: 0;
+    margin: 0;
+    padding: 0px;
+    /*background-color:     #2769A6;*/
+    text-align: center;
+}
+
+.navbar div, .navbar a{
+    display: inline-block;
+    font-size: 1vw;
+    bottom: 0;
+    right: 0;
+    margin-right: .4vw;
+    margin-left: .4vw;
+    padding: 1.2vh;
+    color: white;
+    line-height: 3vh;
+    height: 3vh;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    transition: background-color .2s
+}
+
+.navbar div:hover{
+    color: #101E5B;
+    background-color: #fff;
+}
+
+.navbar div:active{
+    background-color: #fff;
+    color: rgb(16, 30, 91);
+}
+
+
+table{
+    width: 100%;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+form, select, input{
+    display: block;
+    margin: auto;
+    width: 90%
+}
+
+td{
+    padding: 5px;
+}
+
+td:nth-child(1){
+    width: 15vw
+}
+
+td:nth-child(2){
+    width: 4vw
+}
+
+td:nth-child(3){
+    width: 5vw
+}
+
+td:nth-child(4){
+    width: 10vw
+}
+
+td:nth-child(5){
+    width: 6vw;
+}
+
+td:nth-child(6){
+    width: 7vw;
+}
+
+td:nth-child(7){
+    width: 3vw;
+}
+
+td:nth-child(8){
+    width: 3vw;
+}
+
+td:nth-child(9){
+    width: 4vw;
+}
+
+#table td{
+    color: white;
+    background-color: #101E5B
+}
+
+tr:nth-child(even){
+    background-color: #ddd
+}
+
+tr:nth-child(odd){
+    background-color: #eee
+}
+
+#scroll-table{
+    width: 100%;
+    height: 84.5vh;
+    overflow-y: scroll;
+    background-color: #eee;
+}

@@ -1,0 +1,158 @@
+#version-id{
+    display: none;
+}
+
+#titleAdded{
+    display:none
+}
+
+#topbar{
+    flex-direction: row
+}
+
+#main-body{
+    flex-direction: column
+}
+
+#classesText{
+    display: none
+}
+
+#schedule{
+    flex-direction: column
+}
+
+#classes{
+    flex: 1 1 10%;
+    width: 100%;
+    height: unset;
+}
+
+#classesBody{
+    height: 100%
+}
+
+#classesBodyTitle{
+    display: none;
+}
+
+#topbar .img-wrap{
+    width: unset;
+    height: 90%;
+    margin-left: 3vw;
+}
+
+#topbar img{
+    width: auto;
+    height: 100%
+}
+
+#tabs{
+    display: none
+}
+
+#navbar{
+    margin-top: 0;
+    margin-right: 2vw;
+}
+
+#navbar div{
+    font-size: 4vw;
+}
+
+#navbar div:first-child{
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+#navbar a{
+    display: none
+}
+
+form{
+    width: 95%;
+    margin-bottom: .5vh !important;
+}
+
+#availclasses-header, #addedclasses-header {
+    font-size: 4.25vw;
+    margin-bottom: .25vh;
+}
+
+#addedclasses-header span{
+    display: none
+}
+
+#progressContainer{
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border: none;
+}
+
+#progressContainer div{
+    width: 45%;
+    display: inline-block;
+}
+
+#school-name{
+    display: none
+}
+
+#availclasses, #addedclasses {
+    top: 5%;
+    width: 90% !important;
+    height: 80%;
+    min-width: unset;
+}
+
+#availclasses li, #addedclasses li{
+    line-height: unset;
+    font-size: 15px;
+}
+
+form{
+    top: 2.5%;
+    left: 100%;
+}
+
+#disclaimer{
+    display: none
+}
+
+#next{
+    bottom: 0;
+}
+
+#availclasses li, #addedclasses li {
+    padding: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    height: unset;
+}
+
+.class-name{
+    margin-left: 1%;
+    width: 49%;
+    padding: 2vw;
+    font-size: 3vw;
+    height: 95%;
+    vertical-align: middle;
+}
+
+.label {
+    font-size: 3.25vw;
+}
+
+.label span {
+    font-size: 3vw;
+}
+
+.shortline{
+    width: 90%;
+    left: 5%;
+}
+
+.longline div{
+    display: none
+}

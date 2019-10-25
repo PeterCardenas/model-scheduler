@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>AISD Course Selection</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google" content="notranslate">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" media="screen and (max-width: 850px)" href="smallscreen.css">
+    <link rel="icon" href="isdicon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+  <div id="videoBackground" style="display:none" onclick="document.getElementById('videoBackground').style.display = 'none'">
+    <div id="videoContainer">
+      <iframe src="https://player.vimeo.com/video/322281908" width="1000" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <a href="ClickSheet.pdf">Click for a PDF Click Sheet</a>
+    <div id="videoExit" onclick="document.getElementById('videoBackground').style.display = 'none'">EXIT</div>
+  </div></div>
+
+  <div id="loading-cover"></div>
+  
+  <div id="print-cover" style="display:none">
+    <table id="print-table"></table>
+  </div>
+
+  <div id="progressContainer">
+    <div id="previous" onclick="toggleSemester(0)">Previous</div>
+    <div id="next" onclick="toggleSemester(2)">Next</div>
+  </div>
+
+  
+  <div id="main-body">
+    <div id="topbar">
+      <div class="img-wrap"><img src="eaglehead.png"></div>
+      <div id="school-name">Allen High School</div>
+      <div id="tabs">
+	<div onclick="toggleSemester(0)" id="sem-0">Class Selection</div>
+      <div onclick="toggleSemester(1); getClasses(); updateSchedule()"   id="sem-1">Semester 1</div>
+      <div onclick="toggleSemester(2); getClasses(); updateSchedule()"   id="sem-2">Semester 2</div>
+      <div onclick="printButton();"   id="print-button">Print</div><br>
+	<a href="https://goo.gl/forms/X4jpF5JtEuiAoLh23" target="_blank" id="feedback">Feedback</a>
+      </div>
+      <div id="navbar">
+	<div style="cursor: pointer" onclick="document.getElementById('videoBackground').style.display = 'block'" id="help">Instructions</div> 
+	<div id="reset" onclick="localStorage.clear(); location.reload()">Start Over</div>
+	<!-- <a href="https://www.allenisd.org/allenhs" id="home"></a> --> 
+	<!-- <a href="../www/catalog" id="home">Go to Catalog</a>-->
+      </div>
+      
+      <div id="version-id">Version 1.12.2000</div>
+    </div>
+    
+    <div id="classSelection">
+      <div class="col-sm">
+	<form autocomplete="off" onsubmit="return false">
+	  <input type="text" id="search" onclick="this.style.animation = 'none'"placeholder="Search here...">
+	</form>
+	<div id="availclasses-header">Available Classes</div>
+	<ul id="availclasses" class="connectedSortable">
+	</ul>
+      </div>
+      <div class="col-sm">
+	<div id="disclaimer">
+	  <b>DISCLAIMER</b>: Only choose classes that you have chosen in Skyward
+	</div>
+	<div id="addedclasses-header">Added Classes <span onclick="resetClasses()">(clear classes)</span></div>
+	<ul id="addedclasses" class="connectedSortable displayarray">
+	</ul>
+      </div>
+      <h2 style="display: none"><span id = "sort-order"></span></h2>
+    </div>
+    
+    <div id="schedule">
+      <div id="classes" onclick = "deselect()">
+	<div id="classesBodyTitle">Selected Classes</div>
+	<div id="classesBodyText"></div>
+	<div id="classesBody"></div>
+      </div>
+      
+      
+      <div id="back" onclick="deselect()">
+	<div class="label" style="left:14%" id="AA" onmouseover="barShow(this)" onmouseout="barHide(this)"><span>AHS</span><br>A-DAY</div>
+	<div class="label-bar" style="left:14%" id="BA"></div>
+	<div class="label" style="left:33%" id="AB" onmouseover="barShow(this)" onmouseout="barHide(this)"><span>AHS</span><br>B-DAY</div>
+	<div class="label-bar" style="left:33%" id="BB"></div>
+	<div class="label" style="left:52%" id="AC" onmouseover="barShow(this)" onmouseout="barHide(this)"><span>STEAM</span><br>DAILY</div>
+	<div class="label-bar" style="left:52%" id="BC"></div>
+	<div class="label" style="left:71%" id="AD" onmouseover="barShow(this)" onmouseout="barHide(this)"><span>STEAM</span><br>A-DAY</div>
+	<div class="label-bar" style="left:71%" id="BD"></div>
+	<div class="label" style="left:90%" id="AE" onmouseover="barShow(this)" onmouseout="barHide(this)"><span>STEAM</span><br>B-DAY</div>
+	<div class="label-bar" style="left:90%" id="BE"></div>
+	
+	<div class="instance" column="hs-d" id="h1">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">1st Period: 8:50 - 9:45</div>
+	</div>
+	
+	<div class="instance" column="hs-a" id="h2">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd Period: 9:50 - 11:25</div>
+	</div>
+	
+	<div class="instance" column="hs-a" id="h3">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">3rd Period: 11:30 - 1:30</div>
+	</div>
+	
+	<div class="instance" column="hs-a" id="h4">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">4th Period: 1:35 - 3:10</div>
+	</div>
+	
+	<div class="instance" column="hs-b" id="h5">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">5th Period: 9:50 - 11:25</div>
+      </div>
+	
+	<div class="instance" column="hs-b" id="h6">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">6th Period: 11:30 - 1:30</div>
+	</div>
+	
+	<div class="instance" column="hs-b" id="h7">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">7th Period: 1:35 - 3:10</div>
+	</div>
+	
+	<div class="instance" column="hs-d" id="h8">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">8th Period: 3:15 - 4:10</div>
+	</div>
+
+	<div class="instance double-block" column="hs-d" id="h-25">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd/5th Period: 9:50 - 11:25</div>
+	</div>
+
+	<div class="instance double-block" column="hs-d" id="h-36">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">3rd/6th Period: 11:30 - 1:30</div>
+	</div>
+
+	<div class="instance double-block" column="hs-d" id="h-47">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">4th/7th Period: 1:35 - 3:10</div>
+	</div>
+
+	<div class="instance double-block" column="hs-a" id="h-23">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd/3rd Period: 9:50 - 1:30</div>
+	</div>
+
+	<div class="instance double-block" column="hs-b" id="h-56">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">5th/6th Period: 9:50 - 1:30</div>
+	</div>
+
+	<div class="instance double-block" column="hs-a" id="h-34">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">3rd/4th Period: 1:35 - 3:10</div>
+	</div>
+
+	<div class="instance double-block" column="hs-b" id="h-67">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">6th/7th Period: 1:35 - 3:10</div>
+	</div>
+	
+	<div class="instance" column="sc-d" id="s0">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">0 Period: 7:30 - 8:25</div>
+	</div>
+	
+	<div class="instance" column="sc-d" id="s1">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">1st Period: 8:35 - 9:25</div>
+	</div>
+	
+	<div class="instance" column="sc-a" id="s2">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd Period: 9:35 - 11:05</div>
+	</div>
+	
+	<div class="instance" column="sc-b" id="s5">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">5th Period: 9:35 - 11:05</div>
+	</div>
+	
+	<div class="instance" column="sc-d" id="s-25">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd/5th Daily Period: 10:10 - 11:05</div>
+	</div>
+	
+	<div class="instance" column="sc-d" id="s-36">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">3rd/6th Daily Period: 11:45 - 12:40</div>
+	</div>
+	
+	<div class="instance" column="sc-a" id="s3">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">3rd Period: 11:45 - 1:15</div>
+	</div>
+	
+	<div class="instance" column="sc-b" id="s6">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">6th Period: 11:45 - 1:15</div>
+	</div>
+	
+	<div class="instance" column="sc-d" id="s-47">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">4th/7th Daily Period: 1:55 - 2:50</div>
+	</div>
+	
+	<div class="instance" column="sc-a" id="s4">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">4th Period: 1:55 - 3:25</div>
+	</div>
+	
+	<div class="instance" column="sc-b" id="s7">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">7th Period: 1:55 - 3:25</div>
+	</div>
+	
+	<div class="instance" column="sc-d" id="s8">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">8th Period: 3:30 - 4:25</div>
+	</div>
+
+	<div class="instance double-block" column="sc-a" id="s-23">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd/3rd Period: 9:35 - 1:15</div>
+	</div>
+
+	<div class="instance double-block" column="sc-b" id="s-56">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">5th/6th Period: 9:35 - 1:15</div>
+	</div>
+
+	<div class="instance double-block" column="sc-a" id="s-34">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">3rd/4th Period: 11:45 - 3:25</div>
+	</div>
+
+	<div class="instance double-block" column="sc-b" id="s-67">
+	  <div class="class-instance-title"></div>
+	  <div class="class-instance-period">2nd/3rd Period: 11:45 - 3:25</div>
+	</div>
+      </div>
+    </div>
+  </div>    
+  <script src="script.js"></script>
+</body>
+</html>

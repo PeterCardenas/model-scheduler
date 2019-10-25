@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>AISD Course Selection</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta name="google" content="notranslate">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+  <div id="topbar">
+    <img src="../eaglehead.png">
+    <div id="school-name">Allen High School</div>
+    <div class="navbar" style="left: 50vw; transform: translateX(-50%)">
+    </div><div class="navbar" style="right: 2vw; bottom: 50%; transform: translateY(50%)">
+      <a id="home" onclick="localStorage.clear(); location.reload()">Clear All Filters</a>
+      <a href="../" id="home">Course Selection</a>
+      <a href="https://www.allenisd.org/allenhs" id="home">Allen High School</a>
+    </div>
+  </div>
+  <table id="table" style="width: calc(100% - 17px); height: 7.5vh;">
+    <tr id="header">
+      <td>Course Name<form onsubmit="return false" onkeyup="onFieldChange(this)"><input type="text"></form></td>
+      <td>Course Code<form onsubmit="return false" onkeyup="onFieldChange(this)"><input type="text"></form></td>
+      <td>Application Code <form onsubmit="return false" onkeyup="onFieldChange(this)"><input type="text"></form> </td>
+      <td>Category<select onchange="onFieldChange(this)">
+	  <option value="default"></option>
+      </select></td>
+      <td>Grade(s)<select  onchange="onFieldChange(this)">
+          <option value="default"></option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+          <option value="11th">11th</option>
+          <option value="12th">12th</option>
+          <option value="default" disabled>-----------------------------</option>
+          <option value="10th Only">10th Only</option>
+          <option value="11th Only">11th Only</option>
+          <option value="12th Only">12th Only</option>
+          <option value="9th - 10th">9th - 10th</option>
+          <option value="10th - 11th">10th - 11th</option>
+          <option value="10th - 12th">10th - 12th</option>
+          <option value="11th - 12th">11th - 12th</option>
+      </select></td>
+      <td>Location<select  onchange="onFieldChange(this)">
+          <option value="default"></option>
+          <option value="Allen High School">Allen High School</option>
+          <option value="STEAM Center">STEAM Center</option>
+      </select></td>
+      <td>Level<select  onchange="onFieldChange(this)">
+          <option value="default"></option>
+          <option value="O.L.">O.L.</option>
+          <option value="PAP/IB">PAP/IB</option>
+          <option value="A.P.">A.P.</option>
+          <option value="I.B.">I.B.</option>
+          <option value="D.C.">D.C.</option>
+      </select></td>
+      <td>Credit<form onkeyup="onFieldChange(this)"><input type="text"></form></th>
+      <td>Semester<select  onchange="onFieldChange(this)">
+          <option value="default"></option>
+          <option value="1st Only">1st Only</option>
+          <option value="1st or 2nd">1st or 2nd</option>
+          <option value="1st and 2nd">1st and 2nd</option>
+          </select></td>
+      <!-- <td>Period<form onkeyup="onFieldChange(this)"><input type="text"></form></th> -->
+    </tr>
+  </table>
+  <div id="scroll-table">
+    <table id="scroller">
+    </table>
+  </div>
+  <script src="js.js"></script>
+</body>
+</html>
